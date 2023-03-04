@@ -35,6 +35,10 @@ void MainFrame::CreateControls()
 	//create buttons
 	addCourseButton = new wxButton(panel, wxID_ANY, "Add Course", wxPoint(75, 100), wxSize(150, -1));
 
+	//create list 
+	studentList = new wxListView(panel, wxID_ANY, wxPoint(100, 200), wxSize(600, -1));
+	BuildStudentList();
+
 	//create header
 	headline = "No course selected!";
 	headlineText = new wxStaticText(panel, wxID_ANY, headline, wxPoint(0, 22), wxSize(800, -1), wxALIGN_CENTER_HORIZONTAL);
@@ -53,6 +57,16 @@ wxArrayString MainFrame::BuildDropdownChoiceArray()
 		choices.Add(course.subject);
 	}
 	return choices;
+}
+
+void MainFrame::BuildStudentList()
+{
+	studentList->AppendColumn("First Name");
+	studentList->AppendColumn("Last Name");
+	studentList->AppendColumn("Grade");
+	studentList->SetColumnWidth(0, 250);
+	studentList->SetColumnWidth(1, 250);
+	studentList->SetColumnWidth(2, 100);
 }
 
 void MainFrame::OnDropdownChange(wxCommandEvent& evt)
