@@ -16,12 +16,14 @@ private:
 
 	//control creation helpers
 	wxArrayString BuildDropdownChoiceArray();
+	void BuildDropdown();
 	void BuildStudentList();
 	void PopulateStudentList();
 
 	//event handlers
 	void OnDropdownChange(wxCommandEvent& evt);
 	void OnAddStudentButtonClick(wxCommandEvent& evt);
+	void OnAddCourseButtonClick(wxCommandEvent& evt);
 
 	//event helpers
 	void UpdateActiveCourse(wxString courseName);

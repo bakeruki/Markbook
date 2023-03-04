@@ -5,6 +5,7 @@
 #include "Student.h"
 #include "Course.h"
 #include "AddStudentDialog.h"
+#include "AddCourseDialog.h"
 
 MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title)
 {
@@ -28,9 +29,7 @@ void MainFrame::CreateControls()
 	courses.push_back(Course{ "Megson", "Data Management", studentsB });
 
 	//create dropdown menu
-	wxArrayString choices = BuildDropdownChoiceArray();
-	courseSelectDropdown = new wxChoice(panel, wxID_ANY, wxPoint(250, 100), wxSize(300, -1), choices);
-	courseSelectDropdown->SetFont(mainFont);
+	BuildDropdown();
 
 	//create buttons
 	addCourseButton = new wxButton(panel, wxID_ANY, "Add Course", wxPoint(75, 100), wxSize(150, -1));
@@ -50,6 +49,7 @@ void MainFrame::BindEventHandlers()
 {
 	courseSelectDropdown->Bind(wxEVT_CHOICE, &MainFrame::OnDropdownChange, this);
 	addStudentButton->Bind(wxEVT_BUTTON, &MainFrame::OnAddStudentButtonClick, this);
+	addCourseButton->Bind(wxEVT_BUTTON, &MainFrame::OnAddCourseButtonClick, this);
 }
 
 wxArrayString MainFrame::BuildDropdownChoiceArray()
@@ -59,6 +59,14 @@ wxArrayString MainFrame::BuildDropdownChoiceArray()
 		choices.Add(course.subject);
 	}
 	return choices;
+}
+
+void MainFrame::BuildDropdown()
+{
+	wxArrayString choices = BuildDropdownChoiceArray();
+	courseSelectDropdown = new wxChoice(panel, wxID_ANY, wxPoint(250, 100), wxSize(300, -1), (choices));
+	courseSelectDropdown->SetFont(wxFontInfo(wxSize(0, 24)));
+	courseSelectDropdown->Bind(wxEVT_CHOICE, &MainFrame::OnDropdownChange, this);
 }
 
 void MainFrame::BuildStudentList()
@@ -85,7 +93,6 @@ void MainFrame::PopulateStudentList()
 void MainFrame::OnDropdownChange(wxCommandEvent& evt)
 {
 	UpdateActiveCourse(evt.GetString());
-	headlineText->SetLabel((*activeCourse).teacher + " - " + (*activeCourse).subject);
 }
 
 void MainFrame::OnAddStudentButtonClick(wxCommandEvent& evt)
@@ -100,8 +107,31 @@ void MainFrame::OnAddStudentButtonClick(wxCommandEvent& evt)
 
 	if (result == wxID_OK) {
 		wxMessageBox(wxString::Format("First Name: %s\nLast Name: %s\nAverage: %s\n", dialog.GetFirstName(), dialog.GetLastName(), std::to_string(dialog.GetAverage()).substr(0, 5)), "Student Added!");
+		
 		(*activeCourse).students.push_back(Student{ std::string(dialog.GetFirstName().mb_str()), std::string(dialog.GetLastName().mb_str()), dialog.GetAverage()});
+
 		PopulateStudentList();
+	}
+}
+
+void MainFrame::OnAddCourseButtonClick(wxCommandEvent& evt)
+{
+	AddCourseDialog dialog(this, wxID_ANY, "Add Course");
+	int result = dialog.ShowModal();
+
+	if (result == wxID_OK) {
+		wxMessageBox(wxString::Format("Teacher: %s\nSubject: %s\n", dialog.GetTeacher(), dialog.GetSubject()), "Course Added!");
+
+		std::vector<Student> students;
+		Course course{ std::string(dialog.GetTeacher().mb_str()), std::string(dialog.GetSubject().mb_str()), students };
+
+		courses.push_back(course);
+		
+		courseSelectDropdown->Destroy();
+		BuildDropdown();
+		courseSelectDropdown->SetSelection(courses.size() - 1);
+
+		UpdateActiveCourse(course.subject);
 	}
 }
 
@@ -113,5 +143,6 @@ void MainFrame::UpdateActiveCourse(wxString courseName)
 		}
 	}
 
+	headlineText->SetLabel((*activeCourse).teacher + " - " + (*activeCourse).subject);
 	PopulateStudentList();
 }
