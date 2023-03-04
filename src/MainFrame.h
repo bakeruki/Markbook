@@ -37,6 +37,6 @@ private:
 	//variables
 	std::string headline;
 	std::vector<Course> courses;
-	Course activeCourse;
+	Course* activeCourse;
 };
 
