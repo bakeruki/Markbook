@@ -37,9 +37,10 @@ void MainFrame::CreateControls()
 
 	//create buttons
 	addCourseButton = new wxButton(panel, wxID_ANY, "Add Course", wxPoint(75, 100), wxSize(150, -1));
+	addStudentButton = new wxButton(panel, wxID_ANY, "Add Student", wxPoint(75, 525), wxSize(150, -1));
 
 	//create list 
-	studentList = new wxListView(panel, wxID_ANY, wxPoint(100, 200), wxSize(600, -1));
+	studentList = new wxListView(panel, wxID_ANY, wxPoint(75, 150), wxSize(650, 350));
 	BuildStudentList();
 	PopulateStudentList();
 
@@ -52,6 +53,7 @@ void MainFrame::CreateControls()
 void MainFrame::BindEventHandlers()
 {
 	courseSelectDropdown->Bind(wxEVT_CHOICE, &MainFrame::OnDropdownChange, this);
+	addStudentButton->Bind(wxEVT_BUTTON, &MainFrame::OnAddStudentButtonClick, this);
 }
 
 wxArrayString MainFrame::BuildDropdownChoiceArray()
@@ -68,9 +70,9 @@ void MainFrame::BuildStudentList()
 	studentList->AppendColumn("First Name");
 	studentList->AppendColumn("Last Name");
 	studentList->AppendColumn("Grade");
-	studentList->SetColumnWidth(0, 245);
-	studentList->SetColumnWidth(1, 245);
-	studentList->SetColumnWidth(2, 110);
+	studentList->SetColumnWidth(0, 250);
+	studentList->SetColumnWidth(1, 250);
+	studentList->SetColumnWidth(2, 150);
 }
 
 void MainFrame::PopulateStudentList()
@@ -88,6 +90,12 @@ void MainFrame::OnDropdownChange(wxCommandEvent& evt)
 {
 	UpdateActiveCourse(evt.GetString());
 	headlineText->SetLabel(activeCourse.teacher + " - " + activeCourse.subject);
+}
+
+void MainFrame::OnAddStudentButtonClick(wxCommandEvent& evt)
+{
+	wxMessageDialog dialog(this, "Add Student Form", "Add Student", wxYES_NO | wxCANCEL);
+	int result = dialog.ShowModal();
 }
 
 void MainFrame::UpdateActiveCourse(wxString courseName)

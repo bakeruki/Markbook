@@ -135,16 +135,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="App.h" />
-    <ClInclude Include="Course.h" />
-    <ClInclude Include="MainFrame.h" />
-    <ClInclude Include="Student.h" />
+    <ClInclude Include="src\App.h" />
+    <ClInclude Include="src\Course.h" />
+    <ClInclude Include="src\MainFrame.h" />
+    <ClInclude Include="src\Student.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="App.cpp" />
-    <ClCompile Include="Course.cpp" />
-    <ClCompile Include="MainFrame.cpp" />
-    <ClCompile Include="Student.cpp" />
+    <ClCompile Include="src\App.cpp" />
+    <ClCompile Include="src\Course.cpp" />
+    <ClCompile Include="src\MainFrame.cpp" />
+    <ClCompile Include="src\Student.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

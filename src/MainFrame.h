@@ -21,16 +21,20 @@ private:
 
 	//event handlers
 	void OnDropdownChange(wxCommandEvent& evt);
+	void OnAddStudentButtonClick(wxCommandEvent& evt);
 
 	//event helpers
 	void UpdateActiveCourse(wxString courseName);
 
+	//elements
 	wxPanel* panel;
 	wxStaticText* headlineText;
 	wxChoice* courseSelectDropdown;
 	wxButton* addCourseButton;
+	wxButton* addStudentButton;
 	wxListView* studentList;
 
+	//variables
 	std::string headline;
 	std::vector<Course> courses;
 	Course activeCourse;
