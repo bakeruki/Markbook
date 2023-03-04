@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\AddCourseDialog.h" />
     <ClInclude Include="src\AddStudentDialog.h" />
     <ClInclude Include="src\App.h" />
     <ClInclude Include="src\Course.h" />
@@ -142,6 +143,7 @@
     <ClInclude Include="src\Student.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AddCourseDialog.cpp" />
     <ClCompile Include="src\AddStudentDialog.cpp" />
     <ClCompile Include="src\App.cpp" />
     <ClCompile Include="src\Course.cpp" />

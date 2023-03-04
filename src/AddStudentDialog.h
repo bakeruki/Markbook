@@ -15,6 +15,8 @@ public:
 private:
 	virtual bool TransferDataFromWindow() override;
 
+	void CreateControls();
+
 	void UpdateOkButton(wxUpdateUIEvent& evt);
 
 	wxTextCtrl* firstNameField;

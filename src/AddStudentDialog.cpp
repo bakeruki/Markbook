@@ -9,21 +9,35 @@ AddStudentDialog::AddStudentDialog(wxWindow* parent, wxWindowID id, const wxStri
 	const wxPoint& pos, const wxSize& size, long style) : 
 	wxDialog(parent, id, title, pos, size, style)
 {
+	CreateControls();
+}
+
+bool AddStudentDialog::TransferDataFromWindow()
+{
+	firstName = firstNameField->GetValue();
+	lastName = lastNameField->GetValue();
+	average = std::stod(std::string(averageField->GetValue().mb_str()));
+
+	return true;
+}
+
+void AddStudentDialog::CreateControls()
+{
 	wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
 	//first name field
 	wxBoxSizer* firstNameSizer = new wxBoxSizer(wxHORIZONTAL);
-	
+
 	wxStaticText* firstNameLabel = new wxStaticText(this, wxID_ANY, _("First Name"));
 	firstNameLabel->SetMinSize(wxSize(150, -1));
 	firstNameLabel->SetFont(wxFontInfo(wxSize(0, 24)));
-	
+
 	firstNameField = new wxTextCtrl(this, wxID_ANY, "", wxPoint(-1, -1), wxSize(-1, 30));
 	firstNameField->SetFont(wxFontInfo(wxSize(0, 24)));
 
 	firstNameSizer->Add(firstNameLabel);
 	firstNameSizer->Add(firstNameField, 1);
-	
+
 	mainSizer->Add(firstNameSizer, 0, wxEXPAND | wxALL, 5);
 
 	//last name field
@@ -64,15 +78,6 @@ AddStudentDialog::AddStudentDialog(wxWindow* parent, wxWindowID id, const wxStri
 	SetMinSize(wxSize(400, -1));
 	SetFont(wxFontInfo(wxSize(0, 24)));
 	Fit();
-}
-
-bool AddStudentDialog::TransferDataFromWindow()
-{
-	firstName = firstNameField->GetValue();
-	lastName = lastNameField->GetValue();
-	average = std::stod(std::string(averageField->GetValue().mb_str()));
-
-	return true;
 }
 
 void AddStudentDialog::UpdateOkButton(wxUpdateUIEvent& evt)
