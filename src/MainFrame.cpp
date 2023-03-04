@@ -90,7 +90,7 @@ void MainFrame::OnDropdownChange(wxCommandEvent& evt)
 
 void MainFrame::OnAddStudentButtonClick(wxCommandEvent& evt)
 {
-	if ((*activeCourse).subject == "") {
+	if (activeCourse == NULL) {
 		wxMessageBox("Please select a class first!", "Error");
 		return;
 	}
