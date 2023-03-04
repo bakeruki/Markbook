@@ -17,6 +17,7 @@ private:
 	//control creation helpers
 	wxArrayString BuildDropdownChoiceArray();
 	void BuildStudentList();
+	void PopulateStudentList();
 
 	//event handlers
 	void OnDropdownChange(wxCommandEvent& evt);

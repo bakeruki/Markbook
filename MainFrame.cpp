@@ -21,11 +21,14 @@ void MainFrame::CreateControls()
 	panel->SetFont(mainFont);
 
 	//get courses
-	std::vector<Student> students;
-	students.push_back(Student{ "Michelle", "Vuong", 99 });
-	students.push_back(Student{ "Luqman", "Patel", 98 });
-	courses.push_back(Course{ "Camilleri", "Computer Science", students });
-	courses.push_back(Course{ "Megson", "Data Management", students });
+	std::vector<Student> studentsA;
+	std::vector<Student> studentsB;
+	studentsA.push_back(Student{ "Michelle", "Vuong", 99.99 });
+	studentsA.push_back(Student{ "Luqman", "Patel", 98.32 });
+	studentsB.push_back(Student{ "Sean", "Lee", 78.43 });
+	studentsB.push_back(Student{ "Adrian", "Garcia", 56.23 });
+	courses.push_back(Course{ "Camilleri", "Computer Science", studentsA });
+	courses.push_back(Course{ "Megson", "Data Management", studentsB });
 
 	//create dropdown menu
 	wxArrayString choices = BuildDropdownChoiceArray();
@@ -38,6 +41,7 @@ void MainFrame::CreateControls()
 	//create list 
 	studentList = new wxListView(panel, wxID_ANY, wxPoint(100, 200), wxSize(600, -1));
 	BuildStudentList();
+	PopulateStudentList();
 
 	//create header
 	headline = "No course selected!";
@@ -64,9 +68,20 @@ void MainFrame::BuildStudentList()
 	studentList->AppendColumn("First Name");
 	studentList->AppendColumn("Last Name");
 	studentList->AppendColumn("Grade");
-	studentList->SetColumnWidth(0, 250);
-	studentList->SetColumnWidth(1, 250);
-	studentList->SetColumnWidth(2, 100);
+	studentList->SetColumnWidth(0, 245);
+	studentList->SetColumnWidth(1, 245);
+	studentList->SetColumnWidth(2, 110);
+}
+
+void MainFrame::PopulateStudentList()
+{
+	studentList->DeleteAllItems();
+	int i = 0;
+	for (Student student : activeCourse.students) {
+		studentList->InsertItem(i, student.firstName);
+		studentList->SetItem(i, 1, student.lastName);
+		studentList->SetItem(i, 2, (std::to_string(student.average)).substr(0,5));
+	}
 }
 
 void MainFrame::OnDropdownChange(wxCommandEvent& evt)
@@ -82,4 +97,6 @@ void MainFrame::UpdateActiveCourse(wxString courseName)
 			activeCourse = course;
 		}
 	}
+
+	PopulateStudentList();
 }
