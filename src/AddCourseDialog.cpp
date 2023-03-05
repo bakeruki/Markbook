@@ -59,6 +59,7 @@ void AddCourseDialog::CreateControls()
 	SetMinSize(wxSize(400, -1));
 	SetFont(wxFontInfo(wxSize(0, 24)));
 	Fit();
+	Center();
 }
 
 void AddCourseDialog::UpdateOkButton(wxUpdateUIEvent& evt)
