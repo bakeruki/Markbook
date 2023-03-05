@@ -10,5 +10,5 @@ struct Course
 	std::vector<Student> students;
 };
 
-void saveCourseToFile(const std::vector<Student>& students, const std::string& teacher, const std::string& subject, const std::string& fileName);
-Course loadCourseFromFile(const std::string& fileName);
+void SaveCoursesToFile(const std::vector<Course>& courses, const std::string& fileName);
+std::vector<Course> LoadCoursesFromFile(const std::string& fileName);

@@ -24,6 +24,7 @@ private:
 	void OnDropdownChange(wxCommandEvent& evt);
 	void OnAddStudentButtonClick(wxCommandEvent& evt);
 	void OnAddCourseButtonClick(wxCommandEvent& evt);
+	void OnWindowClose(wxCloseEvent& evt);
 
 	//event helpers
 	void UpdateActiveCourse(wxString courseName);

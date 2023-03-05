@@ -23,10 +23,7 @@ void MainFrame::CreateControls()
 	panel->SetFont(mainFont);
 
 	//get courses - manually set for testing purposes for now
-	std::vector<Student> studentsA;
-	std::vector<Student> studentsB;
-	courses.push_back(Course{ "Camilleri", "Computer Science", studentsA });
-	courses.push_back(Course{ "Megson", "Data Management", studentsB });
+	courses = LoadCoursesFromFile("db.txt");
 
 	//create dropdown menu
 	BuildDropdown();
@@ -50,6 +47,7 @@ void MainFrame::BindEventHandlers()
 	courseSelectDropdown->Bind(wxEVT_CHOICE, &MainFrame::OnDropdownChange, this);
 	addStudentButton->Bind(wxEVT_BUTTON, &MainFrame::OnAddStudentButtonClick, this);
 	addCourseButton->Bind(wxEVT_BUTTON, &MainFrame::OnAddCourseButtonClick, this);
+	this->Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnWindowClose, this);
 }
 
 wxArrayString MainFrame::BuildDropdownChoiceArray()
@@ -133,6 +131,12 @@ void MainFrame::OnAddCourseButtonClick(wxCommandEvent& evt)
 
 		UpdateActiveCourse(course.subject);
 	}
+}
+
+void MainFrame::OnWindowClose(wxCloseEvent& evt)
+{
+	SaveCoursesToFile(courses, "db.txt");
+	evt.Skip();
 }
 
 void MainFrame::UpdateActiveCourse(wxString courseName)
