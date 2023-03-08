@@ -23,6 +23,7 @@ private:
 	//event handlers
 	void OnDropdownChange(wxCommandEvent& evt);
 	void OnAddStudentButtonClick(wxCommandEvent& evt);
+	void OnCourseInfoButtonClick(wxCommandEvent& evt);
 	void OnAddCourseButtonClick(wxCommandEvent& evt);
 	void OnWindowClose(wxCloseEvent& evt);
 
@@ -34,6 +35,7 @@ private:
 	wxStaticText* headlineText;
 	wxChoice* courseSelectDropdown;
 	wxButton* addCourseButton;
+	wxButton* courseInfoButton;
 	wxButton* addStudentButton;
 	wxListView* studentList;
 

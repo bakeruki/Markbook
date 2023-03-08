@@ -30,6 +30,7 @@ void MainFrame::CreateControls()
 
 	//create buttons
 	addCourseButton = new wxButton(panel, wxID_ANY, "Add Course", wxPoint(75, 100), wxSize(150, -1));
+	courseInfoButton = new wxButton(panel, wxID_ANY, "Course Info", wxPoint(575, 100), wxSize(150, -1));
 	addStudentButton = new wxButton(panel, wxID_ANY, "Add Student", wxPoint(75, 525), wxSize(150, -1));
 
 	//create list 
@@ -46,6 +47,7 @@ void MainFrame::BindEventHandlers()
 {
 	courseSelectDropdown->Bind(wxEVT_CHOICE, &MainFrame::OnDropdownChange, this);
 	addStudentButton->Bind(wxEVT_BUTTON, &MainFrame::OnAddStudentButtonClick, this);
+	courseInfoButton->Bind(wxEVT_BUTTON, &MainFrame::OnCourseInfoButtonClick, this);
 	addCourseButton->Bind(wxEVT_BUTTON, &MainFrame::OnAddCourseButtonClick, this);
 	this->Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnWindowClose, this);
 }
@@ -112,8 +114,18 @@ void MainFrame::OnAddStudentButtonClick(wxCommandEvent& evt)
 	}
 }
 
-void MainFrame::OnAddCourseButtonClick(wxCommandEvent& evt)
+void MainFrame::OnCourseInfoButtonClick(wxCommandEvent& evt)
 {
+	if (activeCourse == NULL) {
+		wxMessageBox("Please select a class first!", "Error");
+		return;
+	}
+	
+	wxMessageBox(wxString::Format("Course Name: %s\nCourse Teacher: %s\nNumber of Students: %s\n", (*activeCourse).subject, (*activeCourse).teacher, std::to_string((*activeCourse).students.size())), "Course Info");
+}
+
+void MainFrame::OnAddCourseButtonClick(wxCommandEvent& evt)
+{	
 	AddCourseDialog dialog(this, wxID_ANY, "Add Course");
 	int result = dialog.ShowModal();
 
