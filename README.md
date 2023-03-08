@@ -12,6 +12,9 @@ A first and last name must be specified, as well as a grade average (for now unt
 - Persistence  
   
 When the application is exited, the data is saved into a text file named "db.txt". It will be created if it is not found when the application is opened.
+- Course Info Pane  
+  
+Window that shows the information about the course, such as number of students, course median, ect.
 
 # Planned Features
 - Ability to remove students  
@@ -20,9 +23,7 @@ Coming very soon. You will be able to remove a student from a course.
 - Ability to edit students.  
   
 Change their names, ect.
-- Course Info Pane  
-  
-Window that shows the information about the course, such as number of students, course median, ect.
+
 - Adding assignments  
   
 You will be able to create assignments, and then specify the score that the student got on that assignment, which will affect their grade average.
