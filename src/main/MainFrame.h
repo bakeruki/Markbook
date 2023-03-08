@@ -28,6 +28,7 @@ private:
 	void OnWindowClose(wxCloseEvent& evt);
 
 	//event helpers
+	int GetCourseMedian(std::vector<Student> students);
 	void UpdateActiveCourse(wxString courseName);
 
 	//elements

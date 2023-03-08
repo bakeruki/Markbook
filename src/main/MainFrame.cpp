@@ -121,7 +121,7 @@ void MainFrame::OnCourseInfoButtonClick(wxCommandEvent& evt)
 		return;
 	}
 	
-	wxMessageBox(wxString::Format("Course Name: %s\nCourse Teacher: %s\nNumber of Students: %s\n", (*activeCourse).subject, (*activeCourse).teacher, std::to_string((*activeCourse).students.size())), "Course Info");
+	wxMessageBox(wxString::Format("Course Name: %s\nCourse Teacher: %s\nNumber of Students: %s\nCourse Median: %s\n", (*activeCourse).subject, (*activeCourse).teacher, std::to_string((*activeCourse).students.size()), std::to_string(GetCourseMedian((*activeCourse).students))), "Course Info");
 }
 
 void MainFrame::OnAddCourseButtonClick(wxCommandEvent& evt)
@@ -149,6 +149,31 @@ void MainFrame::OnWindowClose(wxCloseEvent& evt)
 {
 	SaveCoursesToFile(courses, "db.txt");
 	evt.Skip();
+}
+
+int MainFrame::GetCourseMedian(std::vector<Student> students)
+{
+	if (students.size() == 0) {
+		return 0;
+	}
+
+	std::vector<double> scores;
+
+	for (Student student : students) {
+		scores.push_back(student.average);
+	}
+
+	double median;
+	sort(scores.begin(), scores.end());
+	
+	if (scores.size() % 2 == 0) {
+		median = (scores[scores.size() / 2 - 1] + scores[scores.size() / 2]) / 2;
+	}
+	else {
+		median = scores[scores.size() / 2];
+	}
+	
+	return median;
 }
 
 void MainFrame::UpdateActiveCourse(wxString courseName)
