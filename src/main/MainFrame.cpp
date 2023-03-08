@@ -2,10 +2,10 @@
 #include <wx/wx.h>
 #include <vector>
 #include <string>
-#include "Student.h"
-#include "Course.h"
-#include "AddStudentDialog.h"
-#include "AddCourseDialog.h"
+#include "../info/Course.h"
+#include "../info/Student.h"
+#include "../dialog/AddStudentDialog.h"
+#include "../dialog/AddCourseDialog.h"
 
 MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title)
 {

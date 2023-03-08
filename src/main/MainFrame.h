@@ -3,7 +3,7 @@
 #include <wx/listctrl.h>
 #include <vector>
 #include <string>
-#include "Course.h"
+#include "../info/Course.h"
 
 class MainFrame : public wxFrame
 {

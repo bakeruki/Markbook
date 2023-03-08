@@ -60,18 +60,22 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\libs\wxWidgets-3.2.2.1\wxwidgets.props" />
+    <Import Project="..\..\..\..\..\dev\libs\wxWidgets-3.2.2.1\wxwidgets.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\libs\wxWidgets-3.2.2.1\wxwidgets.props" />
+    <Import Project="..\..\..\..\..\dev\libs\wxWidgets-3.2.2.1\wxwidgets.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\libs\wxWidgets-3.2.2.1\wxwidgets.props" />
+    <Import Project="..\..\..\..\..\dev\libs\wxWidgets-3.2.2.1\wxwidgets.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\libs\wxWidgets-3.2.2.1\wxwidgets.props" />
+    <Import Project="..\..\..\..\..\dev\libs\wxWidgets-3.2.2.1\wxwidgets.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -135,20 +139,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\AddCourseDialog.h" />
-    <ClInclude Include="src\AddStudentDialog.h" />
-    <ClInclude Include="src\App.h" />
-    <ClInclude Include="src\Course.h" />
-    <ClInclude Include="src\MainFrame.h" />
-    <ClInclude Include="src\Student.h" />
+    <ClInclude Include="src\dialog\AddCourseDialog.h" />
+    <ClInclude Include="src\dialog\AddStudentDialog.h" />
+    <ClInclude Include="src\main\App.h" />
+    <ClInclude Include="src\info\Course.h" />
+    <ClInclude Include="src\main\MainFrame.h" />
+    <ClInclude Include="src\info\Student.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\AddCourseDialog.cpp" />
-    <ClCompile Include="src\AddStudentDialog.cpp" />
-    <ClCompile Include="src\App.cpp" />
-    <ClCompile Include="src\Course.cpp" />
-    <ClCompile Include="src\MainFrame.cpp" />
-    <ClCompile Include="src\Student.cpp" />
+    <ClCompile Include="src\dialog\AddCourseDialog.cpp" />
+    <ClCompile Include="src\dialog\AddStudentDialog.cpp" />
+    <ClCompile Include="src\main\App.cpp" />
+    <ClCompile Include="src\info\Course.cpp" />
+    <ClCompile Include="src\main\MainFrame.cpp" />
+    <ClCompile Include="src\info\Student.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
